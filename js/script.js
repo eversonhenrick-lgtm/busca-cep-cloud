@@ -36,5 +36,18 @@ function mostrarRua() {
 		})
 		.then((ruas) => { // variavel "cep" contendo o json com o CEP do viacep
 			console.log("AQUI AS RUAS", ruas) // imprimindo os dados do cep
+
+			let listaRuas = ""
+
+			for (let rua of ruas) {
+				dadosRua = ""
+				const {ddd, ibge, regiao, siafi, ...ruaNova} = rua
+				for (let prop in ruaNova) {
+					dadosRua = dadosRua + `<h6>${ruaNova[prop]}</h6>`
+				}
+				listaRuas = listaRuas + `<li class="collection-item avatar">${dadosRua}</li>`
+			}
+
+			document.querySelector("#lista-ruas").innerHTML = listaRuas
 		})
 }
